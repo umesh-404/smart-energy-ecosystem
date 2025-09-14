@@ -1,0 +1,60 @@
+{
+  "user_address": "0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6",
+  "recommended_action": "hold",
+  "confidence": 0.5,
+  "optimal_amount": 0,
+  "current_price": 0.049,
+  "predicted_price_24h": 0.0511,
+  "price_change_percent": 4.33,
+  "reasoning": [
+    "Price trend is downward",
+    "High demand relative to supply"
+  ],
+  "risk_level": "low",
+  "market_analysis": {
+    "price_volatility": 0.0038,
+    "demand_volatility": 14.4,
+    "price_trend": -0.000438,
+    "current_price": 0.049,
+    "avg_price_24h": 0.0501
+  },
+  "predictions": [
+    {
+      "hour": 1,
+      "predicted_price": 0.0515,
+      "demand": 111.39420099885253,
+      "supply": 86.11260084013743
+    },
+    {
+      "hour": 2,
+      "predicted_price": 0.0531,
+      "demand": 122.24615732446307,
+      "supply": 92.372954522872
+    },
+    {
+      "hour": 3,
+      "predicted_price": 0.051,
+      "demand": 122.71463848142025,
+      "supply": 98.22971035732745
+    },
+    {
+      "hour": 4,
+      "predicted_price": 0.0476,
+      "demand": 104.5058555582451,
+      "supply": 89.73736401586098
+    },
+    {
+      "hour": 5,
+      "predicted_price": 0.0447,
+      "demand": 102.30540138096777,
+      "supply": 95.25070052686551
+    },
+    {
+      "hour": 6,
+      "predicted_price": 0.0543,
+      "demand": 120.48574137039104,
+      "supply": 88.00217890279407
+    }
+  ],
+  "timestamp": "2025-09-14T01:39:44.912874"
+}
