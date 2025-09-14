@@ -81,9 +81,12 @@ class BlockchainService {
         return '1250000000000000000000'; // 1250 ET in wei format
       }
 
+      // Properly checksum the address before calling the contract
+      const checksummedAddress = ethers.getAddress(address);
+      
       // Call the actual smart contract
-      const balance = await this.energyTokenContract.balanceOf(address);
-      console.log(`📊 Token balance for ${address}: ${balance.toString()}`);
+      const balance = await this.energyTokenContract.balanceOf(checksummedAddress);
+      console.log(`📊 Token balance for ${checksummedAddress}: ${balance.toString()}`);
       return balance.toString();
     } catch (error) {
       console.error('Error getting token balance from contract:', error);
@@ -104,9 +107,12 @@ class BlockchainService {
         };
       }
 
+      // Properly checksum the buyer address
+      const checksummedBuyerAddress = ethers.getAddress(buyerAddress);
+      
       // In a real implementation, this would require a signer with private key
       // For SIH demo, we'll simulate the transaction
-      console.log(`🔄 Simulating trade execution: Buyer ${buyerAddress}, Offer ${offerId}, Amount ${amount}`);
+      console.log(`🔄 Simulating trade execution: Buyer ${checksummedBuyerAddress}, Offer ${offerId}, Amount ${amount}`);
       
       // Simulate blockchain transaction
       const mockTxHash = '0x' + Math.random().toString(16).substr(2, 64);
@@ -137,8 +143,11 @@ class BlockchainService {
         };
       }
 
+      // Properly checksum the user address
+      const checksummedUserAddress = ethers.getAddress(userAddress);
+      
       // Simulate compensation claim
-      console.log(`🔄 Simulating compensation claim: User ${userAddress}, Outage ${outageId}`);
+      console.log(`🔄 Simulating compensation claim: User ${checksummedUserAddress}, Outage ${outageId}`);
       
       const mockTxHash = '0x' + Math.random().toString(16).substr(2, 64);
       console.log(`✅ Compensation claimed with hash: ${mockTxHash}`);
