@@ -6,8 +6,8 @@ class ApiService {
     this.baseURL = API_BASE_URL;
   }
 
-  // Generic request method with retry logic for rate limiting
-  async request(endpoint, options = {}, retryCount = 0) {
+  // Generic request method
+  async request(endpoint, options = {}) {
     const url = `${this.baseURL}${endpoint}`;
     const config = {
       headers: {
@@ -19,14 +19,6 @@ class ApiService {
 
     try {
       const response = await fetch(url, config);
-      
-      // Handle rate limiting (429) with exponential backoff
-      if (response.status === 429 && retryCount < 3) {
-        const delay = Math.pow(2, retryCount) * 1000; // 1s, 2s, 4s
-        console.log(`Rate limited, retrying in ${delay}ms... (attempt ${retryCount + 1})`);
-        await new Promise(resolve => setTimeout(resolve, delay));
-        return this.request(endpoint, options, retryCount + 1);
-      }
       
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);

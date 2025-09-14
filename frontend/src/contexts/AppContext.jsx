@@ -385,44 +385,21 @@ export const AppProvider = ({ children }) => {
       }
     },
 
-    // Initialize user data with batched requests to avoid rate limiting
+    // Initialize user data
     initializeUser: async (address) => {
       // Use fallback address if none provided
       const walletAddress = address || '0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6';
       actions.setUser(walletAddress);
-      
-      // Batch 1: Critical user data (3 requests)
       await Promise.all([
         actions.loadUserProfile(walletAddress),
         actions.loadUserStats(walletAddress),
-        actions.loadTokenBalance(walletAddress),
-      ]);
-      
-      // Small delay to avoid rate limiting
-      await new Promise(resolve => setTimeout(resolve, 500));
-      
-      // Batch 2: Energy data (3 requests)
-      await Promise.all([
         actions.loadEnergyData(walletAddress),
         actions.loadBatteryStatus(walletAddress),
         actions.loadCarbonCredits(walletAddress),
-      ]);
-      
-      // Small delay to avoid rate limiting
-      await new Promise(resolve => setTimeout(resolve, 500));
-      
-      // Batch 3: Trading data (3 requests)
-      await Promise.all([
+        actions.loadTokenBalance(walletAddress),
         actions.loadTradeOffers(),
         actions.loadTransactions(walletAddress),
         actions.loadCompensations(walletAddress),
-      ]);
-      
-      // Small delay to avoid rate limiting
-      await new Promise(resolve => setTimeout(resolve, 500));
-      
-      // Batch 4: AI data (3 requests)
-      await Promise.all([
         actions.loadAISuggestions(walletAddress),
         actions.loadAIPricing(),
         actions.loadAIRecommendations(walletAddress),
